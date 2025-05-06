@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Please dont copy this line.........
+    <script>        
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    
+        document.addEventListener('keydown', function (e) {
+            if (
+                e.key === "F12" ||
+                (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) ||
+                (e.ctrlKey && (e.key === "U" || e.key === "S" || e.key === "C"))
+            ) {
+                e.preventDefault();
+                alert("Mat kar bhai, inspect mana hai!");
+            }
+        });
+    
+        let opened = false;
+        setInterval(() => {
+            const widthThreshold = window.outerWidth - window.innerWidth > 160;
+            const heightThreshold = window.outerHeight - window.innerHeight > 160;
+            if ((widthThreshold || heightThreshold) && !opened) {
+                opened = true;
+                alert("Mat kar bhai please!");
+            } else if (opened && !(widthThreshold || heightThreshold)) {
+                opened = false;
+            }
+        }, 1000);
+    
+        document.addEventListener('copy', function (e) {
+            e.preventDefault();
+            if (e.clipboardData) {
+                e.clipboardData.setData('text/plain', '❌ bola tha mat kar');
+            } else if (window.clipboardData) {
+                window.clipboardData.setData('Text', '❌ bola that mat kar');
+            }
+            alert("Copy mat kar bhai...");
+        });
+    </script>
+    
+    
+    
+</body>
+</html>
